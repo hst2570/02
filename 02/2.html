@@ -1,0 +1,81 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>source</title>
+    
+    <style>
+    	#board
+	{
+	    float: left;
+	    width: 400px;
+	}
+	.ln .color
+	{
+	    float: left;
+	    width: 100px;
+	    height: 100px;
+	}
+	.white
+	{
+	    background-color: white;
+	}
+	.black
+	{
+	    background-color: black;
+	}
+	.red
+	{
+	    background-color: red;
+	}
+    </style>
+    
+</head>
+<body>
+
+<div id="board">
+
+</div>
+<script>
+	function setColor(ln, color) {
+	    var tile = redbox("span");
+	    tile.setAttribute("class", "color "+color);
+	    tile.setAttribute("default", color);
+	    ln.appendChild(tile);
+	}
+	
+	var board = getDom("board");
+
+	for(var i = 1; i <= 4; ++i) {
+	
+	
+	  var ln = redbox("span");
+	  ln.setAttribute("class", "ln");
+	  board.appendChild(ln);
+	
+	    for(var j = 1; j <= 4; ++j) {
+	        if((i+j)%2 === 0){
+	          setColor(ln, "white");
+	        }
+	        else setColor(ln, "black");
+	    }
+	}
+	
+	var nC = null;
+	document.getElementById("board").addEventListener("click", function(event) {
+		        var defaultColor = nC.getAttribute("default");
+		        nC.setAttribute("class", "color "+ defaultColor);
+			}
+	    event.target.setAttribute("class", "color red");
+	    nC = event.target;
+	});
+	
+	
+	function getDom(id){
+	  return document.getElementById(id);
+	}
+	
+	function redbox(id){
+	  return document.createElement(id);
+	}
+</script>
+
+</body></html>
